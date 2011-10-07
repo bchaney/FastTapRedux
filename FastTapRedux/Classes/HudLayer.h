@@ -10,9 +10,11 @@
 
 @interface HudLayer : CCLayer {
     CCProgressTimer *timeLeftBar;
+    CCSprite        *timeLeftOutline;
 }
 
-@property (nonatomic, retain) CCProgressTimer *timeLeftBar;
+@property (nonatomic, retain) CCProgressTimer   *timeLeftBar;
+@property (nonatomic, retain) CCSprite          *timeLeftOutline;
 
 -(void)reset;
 -(void)updateProgressBar:(float)percentLeft;

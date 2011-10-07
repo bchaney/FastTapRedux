@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 @class GameScene;
+@class Level;
 
 @interface LevelLayer : CCLayer {
 
@@ -21,7 +22,7 @@
 @property (nonatomic, retain) GameScene         *parentGameScene;
 
 -(void)reset;
--(void)startLevel;
+-(void)startWithLevel:(Level *)level;
 -(void)stopLevel;
 
 @end

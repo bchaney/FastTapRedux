@@ -12,16 +12,19 @@
 @class LevelLayer;
 @class HudLayer;
 @class Game;
+@class Level;
 
 @interface GameScene : CCScene {
     LevelLayer  *levelLayer;
     HudLayer    *hudLayer;
     Game        *currentGame;
+    Level       *currentLevel;
 }
 
 @property (nonatomic, retain) LevelLayer    *levelLayer;
 @property (nonatomic, retain) HudLayer      *hudLayer;
 @property (nonatomic, retain) Game          *currentGame;
+@property (nonatomic, retain) Level         *currentLevel;
 
 -(id)initWithGame:(Game *)game;
 -(void)reset;

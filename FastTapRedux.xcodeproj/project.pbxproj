@@ -133,6 +133,9 @@
 		94CF585D143DFB0A00DC2245 /* prog_bar_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF5856143DFB0A00DC2245 /* prog_bar_full.png */; };
 		94CF585E143DFB0A00DC2245 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF5857143DFB0A00DC2245 /* Settings.png */; };
 		94CF585F143DFB0A00DC2245 /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF5858143DFB0A00DC2245 /* Target.png */; };
+		94CF5862143F4AA800DC2245 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF5861143F4AA800DC2245 /* Level.m */; };
+		94CF5865143F4F7200DC2245 /* LevelOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF5864143F4F7200DC2245 /* LevelOverScene.m */; };
+		94CF5867143F50F800DC2245 /* prog_bar_outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF5866143F50F800DC2245 /* prog_bar_outline.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -386,6 +389,11 @@
 		94CF5856143DFB0A00DC2245 /* prog_bar_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prog_bar_full.png; path = Resources/prog_bar_full.png; sourceTree = "<group>"; };
 		94CF5857143DFB0A00DC2245 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings.png; path = Resources/Settings.png; sourceTree = "<group>"; };
 		94CF5858143DFB0A00DC2245 /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Target.png; path = Resources/Target.png; sourceTree = "<group>"; };
+		94CF5860143F4AA800DC2245 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		94CF5861143F4AA800DC2245 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		94CF5863143F4F7200DC2245 /* LevelOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelOverScene.h; sourceTree = "<group>"; };
+		94CF5864143F4F7200DC2245 /* LevelOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelOverScene.m; sourceTree = "<group>"; };
+		94CF5866143F50F800DC2245 /* prog_bar_outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prog_bar_outline.png; path = Resources/prog_bar_outline.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +461,7 @@
 		94CF56DB143DFA5500DC2245 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				94CF5866143F50F800DC2245 /* prog_bar_outline.png */,
 				94CF5852143DFB0A00DC2245 /* FastTapLogo.png */,
 				94CF5853143DFB0A00DC2245 /* minus10.png */,
 				94CF5854143DFB0A00DC2245 /* NewGame.png */,
@@ -795,10 +804,14 @@
 				94CF5840143DFAE300DC2245 /* GameConfig.h */,
 				94CF5841143DFAE300DC2245 /* GameScene.h */,
 				94CF5842143DFAE300DC2245 /* GameScene.m */,
+				94CF5863143F4F7200DC2245 /* LevelOverScene.h */,
+				94CF5864143F4F7200DC2245 /* LevelOverScene.m */,
 				94CF5843143DFAE300DC2245 /* HudLayer.h */,
 				94CF5844143DFAE300DC2245 /* HudLayer.m */,
 				94CF5845143DFAE300DC2245 /* LevelLayer.h */,
 				94CF5846143DFAE300DC2245 /* LevelLayer.m */,
+				94CF5860143F4AA800DC2245 /* Level.h */,
+				94CF5861143F4AA800DC2245 /* Level.m */,
 				94CF5847143DFAE300DC2245 /* MainMenuScene.h */,
 				94CF5848143DFAE300DC2245 /* MainMenuScene.m */,
 				94CF5849143DFAE300DC2245 /* RootViewController.h */,
@@ -870,6 +883,7 @@
 				94CF585D143DFB0A00DC2245 /* prog_bar_full.png in Resources */,
 				94CF585E143DFB0A00DC2245 /* Settings.png in Resources */,
 				94CF585F143DFB0A00DC2245 /* Target.png in Resources */,
+				94CF5867143F50F800DC2245 /* prog_bar_outline.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -982,6 +996,8 @@
 				94CF584F143DFAE400DC2245 /* LevelLayer.m in Sources */,
 				94CF5850143DFAE400DC2245 /* MainMenuScene.m in Sources */,
 				94CF5851143DFAE400DC2245 /* RootViewController.m in Sources */,
+				94CF5862143F4AA800DC2245 /* Level.m in Sources */,
+				94CF5865143F4F7200DC2245 /* LevelOverScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
