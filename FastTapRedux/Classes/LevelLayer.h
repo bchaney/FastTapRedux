@@ -11,8 +11,6 @@
 @class Level;
 
 @interface LevelLayer : CCLayer {
-
-    CCAction *growAndShrink;
     GameScene *parentGameScene;
     
     NSMutableArray *targetList;

@@ -57,16 +57,20 @@
 
 -(void)levelOver {
     NSLog(@"Level Over!");
+    [self.levelLayer stopLevel];
+    [self unscheduleUpdate];
     LevelOverScene *levelOverScene = [LevelOverScene node];
-    
-    
-    
-    [[CCDirector sharedDirector] pushScene:levelOverScene];
+    levelOverScene.gameScene = self;
+    [[CCDirector sharedDirector] replaceScene:levelOverScene];
+    [levelOverScene createFromLevel:self.currentLevel fromGame:self.currentGame];
+    int lvlScore = (self.currentLevel.numberHits * 10) + ((self.currentLevel.numberAttempts - self.currentLevel.numberHits) * -10);
+    [levelOverScene addScoresFromLevel:lvlScore toGame:self.currentGame];
+
+
 }
 -(void)gameOver {
     NSLog(@"Game Over!");
-    [self unscheduleUpdate];
-    [self.levelLayer stopLevel];
+    [self levelOver];
 }
 
 -(void)update:(ccTime)dt {
@@ -80,23 +84,28 @@
 }
 
 -(void)startGame {
+    [[CCDirector sharedDirector] replaceScene:self];
+    [self reset];
     [self scheduleUpdate];
     [self.levelLayer startWithLevel:self.currentLevel];
 }
 
 -(void)nextLevel {
+    NSLog(@"BABOOM");
+    self.currentGame.timeLeft = GAME_TIME;
+    [self.hudLayer updateProgressBar:100.0];
+    [[CCDirector sharedDirector] replaceScene:self];
     Level *newLevel = [[Level alloc] initWithLevelNumber:self.currentLevel.levelNumber+1 spawnRate:self.currentLevel.spawnRate-0.2];
-    [self.currentLevel release];
     self.currentLevel = newLevel;
-    
+    [self.levelLayer reset];
     [self scheduleUpdate];
     [self.levelLayer startWithLevel:self.currentLevel];
 }
 
 -(void)onEnter {
-    [self startGame];
     [super onEnter];
 }
+
 -(void) dealloc {
     [self.currentGame release];
     self.currentGame = nil;

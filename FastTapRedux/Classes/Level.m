@@ -10,7 +10,7 @@
 
 @implementation Level
 
-@synthesize levelNumber, spawnRate, numberHits, numberAttempts, hitLocations;
+@synthesize levelNumber, spawnRate, numberHits, numberAttempts, hitLocations, rxnTime;
 
 -(id)init {
     return [self initWithLevelNumber:1 spawnRate:2.0];
@@ -22,6 +22,7 @@
         self.spawnRate = rate;
         self.numberAttempts = 0;
         self.numberHits = 0;
+        self.rxnTime = [NSMutableArray array];
         self.hitLocations = [NSMutableArray array];
     }
     
@@ -29,13 +30,20 @@
 }
 
 -(void)reset {
+    self.levelNumber = 0;
+    self.spawnRate = 2.0;
     self.numberAttempts = 0;
     self.numberHits = 0;
     [self.hitLocations removeAllObjects];
+    [self.rxnTime removeAllObjects];
+
 }
 -(void)dealloc {
     [self.hitLocations release];
     self.hitLocations = nil;
+    [self.rxnTime release];
+    self.rxnTime = nil;
+    
     [super dealloc];
 }
 

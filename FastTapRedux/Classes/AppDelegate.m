@@ -122,7 +122,7 @@
 
     }
     [self.gameScene reset];
-    [[CCDirector sharedDirector] replaceScene:self.gameScene];
+    [self.gameScene startGame];
 }
 
 

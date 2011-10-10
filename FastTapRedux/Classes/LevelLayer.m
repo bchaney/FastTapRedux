@@ -12,19 +12,20 @@
 #import "Level.h"
 
 #define SCALE_FROM_FACTOR   .01
-#define SCALE_TO_FACTOR     .5
+#define SCALE_TO_FACTOR     1.0
 @implementation LevelLayer
 
 @synthesize targetList, parentGameScene;
 
 -(void)reset {
-    
+    [self removeAllChildrenWithCleanup:YES];
 }
 -(void)slideAndShow:(id)sender {
     CCProgressTimer *sprite = (CCProgressTimer *)sender;
     sprite.percentage = sprite.percentage + 1;
     sprite.position = ccp(sprite.position.x + sprite.contentSize.width / 100, sprite.position.y);
 }
+
 -(void)slideAndHide:(id)sender {
     CCProgressTimer *sprite = (CCProgressTimer *)sender;
     sprite.percentage = sprite.percentage - 2;
@@ -35,6 +36,16 @@
     CCSprite *sprite = (CCSprite *)sender;
     [self removeChild:sprite cleanup:YES];
 }
+-(void)missedTarget:(id)sender {
+    CCSprite *sprite = (CCSprite *)sender;
+    [self removeChild:sprite cleanup:YES];
+    NSLog(@"missed one");
+    self.parentGameScene.currentGame.lives -= 1;
+    if (self.parentGameScene.currentGame.lives <= 0) {
+        [self.parentGameScene gameOver];
+    }
+
+}
 
 -(CCAction *)makeRandomGrowAndShrink {
     // Random time for target to grow and shrink
@@ -43,7 +54,7 @@
     return [CCSequence actions:
             [CCScaleTo actionWithDuration:time scale:SCALE_TO_FACTOR],
             [CCScaleTo actionWithDuration:time scale:SCALE_FROM_FACTOR],
-            [CCCallFuncN actionWithTarget:self selector:@selector(animOver:)],
+            [CCCallFuncN actionWithTarget:self selector:@selector(missedTarget:)],
             nil];
 }
 
@@ -70,6 +81,7 @@
     //NSLog(@"%d, %d", posX, posY);
     [self.targetList addObject:target];
     [self addChild:target];
+    target.tag = CACurrentMediaTime();
     [target runAction:[[[self makeRandomGrowAndShrink] copy] autorelease]];
     //[t runAction:[CCSequence actions:
     //              [CCRepeat actionWithAction:[CCCallFuncN actionWithTarget:self selector:@selector(slideAndShow:)] times:100], nil]];
@@ -93,10 +105,14 @@
     for (CCSprite *target in self.targetList) {
         int distX, distY, squareDist, squareRadius;
         squareRadius = target.contentSize.width * target.scaleX/2 * target.contentSize.width * target.scaleY/2;
-        distX = target.position.x - location.x;
-        distY = target.position.y - location.y;
+        distX = location.x - target.position.x;
+        distY = location.y - target.position.y ;
         squareDist = distX * distX + distY * distY;
         if (squareDist < squareRadius) {
+            [self.parentGameScene.currentLevel.hitLocations addObject:
+             [NSValue valueWithCGPoint:CGPointMake(distX/target.scaleX, distY/target.scaleY)]];
+            NSNumber *rxn = [NSNumber numberWithDouble:(CACurrentMediaTime() - target.tag)];
+            [self.parentGameScene.currentLevel.rxnTime addObject:rxn];
             removeNumber = target;
             break;
         }
@@ -108,19 +124,24 @@
                                     [CCCallFuncN actionWithTarget:self selector:@selector(animOver:)],
                                     nil];
     
+    self.parentGameScene.currentLevel.numberAttempts++;
     // Add or subtract 10 depending on if touch is successful
     if (removeNumber) {
-        self.parentGameScene.currentGame.totalScore = self.parentGameScene.currentGame.totalScore + 10;
+        self.parentGameScene.currentLevel.numberHits++;
+        //self.parentGameScene.currentGame.totalScore = self.parentGameScene.currentGame.totalScore + 10;
         
         CCSprite *plus10Sprite = [CCSprite spriteWithFile:@"plus10.png"];
         plus10Sprite.position = location;
+        
+        
         [self addChild:plus10Sprite];
         [self.targetList removeObject:removeNumber];
         [self removeChild:removeNumber cleanup:YES];
         [plus10Sprite runAction:[[fadeAndScaleAction copy] autorelease]];
+
     }
     else {
-        self.parentGameScene.currentGame.totalScore = self.parentGameScene.currentGame.totalScore - 10;
+        //self.parentGameScene.currentGame.totalScore = self.parentGameScene.currentGame.totalScore - 10;
         CCSprite *minus10Sprite = [CCSprite spriteWithFile:@"minus10.png"];
         minus10Sprite.position = location;
         [self addChild:minus10Sprite];
@@ -130,9 +151,11 @@
 }
 
 -(void)stopLevel {
-    [self unschedule:@selector(addTarget)];
+    NSLog(@"Stopping level");
+    [self unschedule:@selector(addTarget:)];
 }
 -(void)startWithLevel:(Level *)level {
+    self.parentGameScene = [(GameScene *)self.parent autorelease];
     NSLog(@"Level Number = %d, spawnRate = %g", level.levelNumber, level.spawnRate);
     [self schedule:@selector(addTarget) interval:level.spawnRate];
 }
@@ -140,9 +163,7 @@
     self = [super init];
     if (self) {
         self.targetList = [NSMutableArray array];
-        self.parentGameScene = (GameScene *)self.parent;
         self.isTouchEnabled = YES;
-
     }
     
     return self;

@@ -136,6 +136,8 @@
 		94CF5862143F4AA800DC2245 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF5861143F4AA800DC2245 /* Level.m */; };
 		94CF5865143F4F7200DC2245 /* LevelOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF5864143F4F7200DC2245 /* LevelOverScene.m */; };
 		94CF5867143F50F800DC2245 /* prog_bar_outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF5866143F50F800DC2245 /* prog_bar_outline.png */; };
+		94CF5871143F572400DC2245 /* hit_sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF5870143F572400DC2245 /* hit_sprite.png */; };
+		94CF5873143F9DB100DC2245 /* Score.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF5872143F9DB100DC2245 /* Score.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -394,6 +396,8 @@
 		94CF5863143F4F7200DC2245 /* LevelOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelOverScene.h; sourceTree = "<group>"; };
 		94CF5864143F4F7200DC2245 /* LevelOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelOverScene.m; sourceTree = "<group>"; };
 		94CF5866143F50F800DC2245 /* prog_bar_outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prog_bar_outline.png; path = Resources/prog_bar_outline.png; sourceTree = "<group>"; };
+		94CF5870143F572400DC2245 /* hit_sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hit_sprite.png; path = Resources/hit_sprite.png; sourceTree = "<group>"; };
+		94CF5872143F9DB100DC2245 /* Score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Score.png; path = Resources/Score.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +465,8 @@
 		94CF56DB143DFA5500DC2245 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				94CF5872143F9DB100DC2245 /* Score.png */,
+				94CF5870143F572400DC2245 /* hit_sprite.png */,
 				94CF5866143F50F800DC2245 /* prog_bar_outline.png */,
 				94CF5852143DFB0A00DC2245 /* FastTapLogo.png */,
 				94CF5853143DFB0A00DC2245 /* minus10.png */,
@@ -884,6 +890,8 @@
 				94CF585E143DFB0A00DC2245 /* Settings.png in Resources */,
 				94CF585F143DFB0A00DC2245 /* Target.png in Resources */,
 				94CF5867143F50F800DC2245 /* prog_bar_outline.png in Resources */,
+				94CF5871143F572400DC2245 /* hit_sprite.png in Resources */,
+				94CF5873143F9DB100DC2245 /* Score.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,6 +1099,7 @@
 				94CF583A143DFA5700DC2245 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

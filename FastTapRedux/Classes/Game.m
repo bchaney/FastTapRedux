@@ -10,7 +10,7 @@
 
 @implementation Game
 
-@synthesize totalScore, attempts, hits, timeLeft;
+@synthesize totalScore, attempts, hits, timeLeft, lives;
 
 - (id)init
 {
@@ -19,7 +19,7 @@
         self.totalScore = 0;
         self.attempts = 0;
         self.hits = 0;
-        
+        self.lives = TOTAL_LIVES;
         self.timeLeft = GAME_TIME;
     }
     
@@ -30,7 +30,7 @@
     self.totalScore = 0;
     self.attempts = 0;
     self.hits = 0;
-    
+    self.lives = TOTAL_LIVES;
     self.timeLeft = GAME_TIME;
 }
 

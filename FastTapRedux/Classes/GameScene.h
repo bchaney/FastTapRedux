@@ -27,5 +27,9 @@
 @property (nonatomic, retain) Level         *currentLevel;
 
 -(id)initWithGame:(Game *)game;
+-(void)startGame;
+-(void)nextLevel;
+-(void)gameOver;
 -(void)reset;
+
 @end

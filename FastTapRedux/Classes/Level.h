@@ -14,11 +14,12 @@
     int numberAttempts;
     int numberHits;
     NSMutableArray *hitLocations;
+    NSMutableArray *rxnTime;
 }
 
 @property (assign) int levelNumber, numberAttempts, numberHits;
 @property (assign) float spawnRate;
-@property (nonatomic, retain) NSMutableArray *hitLocations;
+@property (nonatomic, retain) NSMutableArray *hitLocations, *rxnTime;
 
 -(id)initWithLevelNumber:(int)lvlNumber spawnRate:(float)spwnRate;
 -(void)reset;
