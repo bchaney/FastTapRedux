@@ -1,0 +1,5 @@
+A rough game created to start to learn more about objective-C and cocos2d.
+Able to play through unlimited levels until you miss 3 targets.
+
+Looking to add a top score section, music, and life markers soon. Also, may
+try to polish up the graphics a bit and redo some of the scene switching logic
